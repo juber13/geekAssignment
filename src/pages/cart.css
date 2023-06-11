@@ -1,8 +1,5 @@
 .cart-container-wrapper{
-    /* width: 90%; */
-    /* margin: 0 auto; */
     display: flex;
-    /* align-items: center; */
     justify-content: space-around;
 }
 .cart__container{

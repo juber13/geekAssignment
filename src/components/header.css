@@ -15,9 +15,6 @@
     right: 0;
     top: 0;
     z-index: 1000;
-    /* border-bottom: 2px solid #ddd; */
-    /* box-shadow: 2px 3px 2px #ddd; */
-    /* bottom: 0; */
 }
 
 .logo , .links{
@@ -42,8 +39,6 @@
 .counter{
     position: absolute;
     top: 15px;
-    /* right: 0; */
-    /* left: 10px; */
     right: 27px;
 
     bottom:0;

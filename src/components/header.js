@@ -1,11 +1,10 @@
 import React from 'react'
-// import BsCart3 from 'react-icons/bs';
 import { BsCart3 } from 'react-icons/bs';
 import './header.css'
 import { Link } from 'react-router-dom';
 import { CartState } from '../Context';
 const header = () => {
-  const {cart} = CartState();
+  const {state} = CartState();
   return (
     <div className='header'>
         <div className='logo'>
@@ -14,7 +13,7 @@ const header = () => {
         <div className='links'>
             <ul>
                 <li>Products</li>
-                <Link to="/cart"><li><BsCart3  className='cart-icon'/><small className='counter'>{cart.length > 0 ? cart.length : 0}</small></li></Link>
+                <Link to="/cart"><li><BsCart3  className='cart-icon'/><small className='counter'>{state.cart.length}</small></li></Link>
             </ul>
         </div>
     </div>
