@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { createContext } from "react";
 import { cartReducer , productReducer } from "./Reducer";
 
 const Cart = createContext();
 
 const Context = (props) => {
-const [loding, setLoading] = useState(false);
   
 
   const [state, dispatch] = useReducer(cartReducer, {
@@ -16,14 +15,12 @@ const [loding, setLoading] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
         try {
-          setLoading(true);
           const res = await fetch(
             "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json"
           );
           const result = await res.json();
           state.products = result.length > 0 ? result:[];
           dispatch(state);
-          setLoading(false);
         } catch (err) {
           console.log("Error:", err);
         }
@@ -40,9 +37,6 @@ const [loding, setLoading] = useState(false);
        green : false,
        men : false,
        women : false,
-        rate_1 : false,
-        rate_2 : false,
-       rate_3 : false,
        polo : false,
        hoddie : false,
        basic : false,

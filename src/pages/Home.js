@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./home.css";
 import Sidebar from "../components/sidebar";
 import ProductList from '../components/productList'
@@ -43,7 +43,7 @@ const filterData = [
 const Home = () => {
   const { state ,  productState , productDispatch} = CartState();
   console.log(state)
-  const { red, blue, yellow , green , men , women , polo , hoddie, basic , rate_1 , rate_2 , rate_3 , searchQuery } = productState;
+  const { red, blue, yellow , green , men , women , polo , hoddie, basic ,searchQuery } = productState;
 
 
 
@@ -59,7 +59,7 @@ const Home = () => {
     if(polo) sortedProducts = sortedProducts.filter((prod) => prod.type === "Polo");
     if(hoddie) sortedProducts = sortedProducts.filter((prod) => prod.type === "hoddie");
     if(basic) sortedProducts = sortedProducts.filter((prod) => prod.type === "Basic");
-    
+
     if (searchQuery) sortedProducts = sortedProducts.filter((prod) => prod.name.toLowerCase().includes(searchQuery));
 
      return sortedProducts;
