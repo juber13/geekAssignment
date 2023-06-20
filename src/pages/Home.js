@@ -41,31 +41,27 @@ const filterData = [
 ];
 
 const Home = () => {
-  const { state ,  productState , productDispatch} = CartState();
-  console.log(state)
+  const { state ,  productState , productDispatch , loading} = CartState();
+  console.log(state.products)
   const { red, blue, yellow , green , men , women , polo , hoddie, basic ,searchQuery } = productState;
 
 
 
-  function filterOutproducts(product){
-
-    let sortedProducts = product;
+  function filterOutproducts(items){
+    let sortedProducts = items;
     if(red) sortedProducts = sortedProducts.filter((item) => item.color === "Red");
-    if(blue) sortedProducts = sortedProducts.filter(item => item.color === "Blue");
-    if(yellow) sortedProducts = sortedProducts.filter((prod) => prod.color === "Yellow");
-    if(green) sortedProducts = sortedProducts.filter((prod) => prod.color === "Green");
-    if(men) sortedProducts = sortedProducts.filter((prod) => prod.gender === "Men");
-    if(women) sortedProducts = sortedProducts.filter((prod) => prod.gender === "Women");
-    if(polo) sortedProducts = sortedProducts.filter((prod) => prod.type === "Polo");
-    if(hoddie) sortedProducts = sortedProducts.filter((prod) => prod.type === "hoddie");
-    if(basic) sortedProducts = sortedProducts.filter((prod) => prod.type === "Basic");
-
-    if (searchQuery) sortedProducts = sortedProducts.filter((prod) => prod.name.toLowerCase().includes(searchQuery));
+    else if(blue) sortedProducts = sortedProducts.filter(item => item.color === "Blue");
+    else if(yellow) sortedProducts = sortedProducts.filter((prod) => prod.color === "Yellow");
+    else if(green) sortedProducts = sortedProducts.filter((prod) => prod.color === "Green");
+    else if(men) sortedProducts = sortedProducts.filter((prod) => prod.gender === "Men");
+    else if(women) sortedProducts = sortedProducts.filter((prod) => prod.gender === "Women");
+    else if(polo) sortedProducts = sortedProducts.filter((prod) => prod.type === "Polo");
+    else if(hoddie) sortedProducts = sortedProducts.filter((prod) => prod.type === "hoddie");
+    else if(basic) sortedProducts = sortedProducts.filter((prod) => prod.type === "Basic");
+    else if (searchQuery) sortedProducts = sortedProducts.filter((prod) => prod.name.toLowerCase().includes(searchQuery));
 
      return sortedProducts;
   }
-
-
 
   return (
     <div className="wrapper">
@@ -76,7 +72,7 @@ const Home = () => {
         </div>
         <div className="product-wrapper">
           <Sidebar filterData={filterData}/>
-          {<ProductList products={filterOutproducts(state.products)}/>}
+          <ProductList products={state.products} filterOutproducts={filterOutproducts} loading={loading}/>
         </div>
       </div>
     </div>

@@ -7,7 +7,6 @@ import "./cart.css";
 const Cart = () => {
   const [total, setTotal] = useState();
   const { state , dispatch} = CartState();
-  console.log(state.cart);
 
   useEffect(() =>{
     setTotal(state.cart.reduce((acc , curr) => acc + Number(curr.price) * curr.qty , 0))
