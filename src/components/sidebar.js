@@ -2,10 +2,8 @@ import React from "react";
 // import  { CartState }  from "../Context";
 import { CartState } from "../Context";
 
-const sidebar = ({ filterData, filterUpDation }) => {
-  // console.log(filterData);
+const sidebar = () => {
   const { productState, productDispatch } = CartState();
-  console.log(productState);
 
   const {red , blue , green , yellow , polo , hoddie , rate_1 , rate_2 , rate_3, men , women , basic} = productState;
 
@@ -99,7 +97,7 @@ const sidebar = ({ filterData, filterUpDation }) => {
               onChange={(e) => productDispatch({ type: 'RATING_2'})}
               checked={rate_2}
             />
-            <label htmlFor="250">250</label>
+            <label htmlFor="250">350 - 450</label>
           </div>
 
           <div className="checkbox-container">
@@ -109,7 +107,7 @@ const sidebar = ({ filterData, filterUpDation }) => {
               onChange={(e) => productDispatch({ type: 'RATING_3'})}
               checked={rate_3}
             />
-            <label htmlFor="250"> 450</label>
+            <label htmlFor="250"> 450 - 500</label>
           </div>
         </div>
 

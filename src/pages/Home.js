@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./home.css";
 import Sidebar from "../components/sidebar";
 import ProductList from '../components/productList'
@@ -25,9 +25,9 @@ const filterData = [
   {
     name: "Price",
     category: [
-      { status: false, filterName: "250" },
-      { status: false, filterName: "251 - 405" },
-      { status: false, filterName: "450" },
+      { status: false, filterName: "250 - 350" },
+      { status: false, filterName: "350 - 450" },
+      { status: false, filterName: "450 - 500" },
     ],
   },
   {
@@ -41,12 +41,9 @@ const filterData = [
 ];
 
 const Home = () => {
+  const [val , setInputValue] = useState("");
   const { state ,  productState , productDispatch , loading} = CartState();
-  console.log(state.products)
-  const { red, blue, yellow , green , men , women , polo , hoddie, basic ,searchQuery } = productState;
-
-
-
+  const { red, blue, yellow , green , men , women , polo , hoddie, basic ,searchQuery , rate_1 , rate_2 , rate_3 } = productState;
   function filterOutproducts(items){
     let sortedProducts = items;
     if(red) sortedProducts = sortedProducts.filter((item) => item.color === "Red");
@@ -58,16 +55,28 @@ const Home = () => {
     else if(polo) sortedProducts = sortedProducts.filter((prod) => prod.type === "Polo");
     else if(hoddie) sortedProducts = sortedProducts.filter((prod) => prod.type === "hoddie");
     else if(basic) sortedProducts = sortedProducts.filter((prod) => prod.type === "Basic");
+    if(rate_1) sortedProducts = sortedProducts.filter((prod) => prod.price >= 250 && prod.price <=350)
+    if(rate_2) sortedProducts = sortedProducts.filter((prod) => prod.price >= 350 && prod.price <=450)
+    if(rate_3) sortedProducts = sortedProducts.filter((prod) => prod.price >= 450 && prod.price <=500)
     else if (searchQuery) sortedProducts = sortedProducts.filter((prod) => prod.name.toLowerCase().includes(searchQuery));
 
      return sortedProducts;
+  }
+
+  function handleInput(e){
+    setInputValue(e.target.value);
+    if(val.trim() !== ""){
+      productDispatch({type : "FILTER_BY_SEARCH" , payload : e.target.value})
+    }else{
+      return;
+    }
   }
 
   return (
     <div className="wrapper">
       <div className="container">
         <div className="search-bar">
-          <input name=""  type="text" placeholder="search for products..." onChange={(e) => productDispatch({type : "FILTER_BY_SEARCH" , payload : e.target.value})}/>
+          <input name=""  type="text" value={val} placeholder="search for products..." onChange={(e) => handleInput(e)}/>
           <button><BiSearch /></button>
         </div>
         <div className="product-wrapper">

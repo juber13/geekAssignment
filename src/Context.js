@@ -42,6 +42,9 @@ const Context = (props) => {
        hoddie : false,
        basic : false,
        searchQuery: "",
+       rate_1 : false,
+       rate_2 : false,
+       rate_3 : false,
 
     });
   
